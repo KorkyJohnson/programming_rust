@@ -43,13 +43,21 @@ fn main() {
     // another_function("Hello parameter".to_string());
 
     // expressions
-    let y = {
-        let x = 3;
-        x + 1
-    };
-    println!("The value of y is: {}", y);
+    // let y = {
+    //     let x = 3;
+    //     x + 1
+    // };
+    // println!("The value of y is: {}", y);
+
+    // functions w/ return values
+    let x = plus_one(5);
+    println!("The value of x is: {}", x);
 }
 
 // fn another_function(parm: String){
 //     println!("{}",parm);
 // }
+
+fn plus_one(x: i32) -> i32 {
+    x + 1
+}

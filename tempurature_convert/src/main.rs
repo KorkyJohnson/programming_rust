@@ -18,14 +18,15 @@ fn main() {
     // trim and force uppercase on the 'value' character
     let temp_value = temp_value.trim().to_uppercase();
     // check to ensure that the number is still a value otherwise ask them again to enter a tempurature
-    let _num: f64 = match temp_num.parse() {
-        Ok(num) => num,
+    // if good, pass it to the variable _number
+    let _number: f32 = match temp_num.parse() {
+        Ok(n) => n,
         Err(_) => {
             println!("Please enter a numeric value");
             return;
         }
     };
-    let _value = match temp_value.as_str() {
+    let _unit = match temp_value.as_str() {
         "C" => {
             println!("Converting Celcius to Farenheit");
             'C'
@@ -39,5 +40,15 @@ fn main() {
             return;
         }
     }; 
-    println!("temp_num: {} temp_value: {}", temp_num, temp_value)
+    println!("temp_num: {} temp_value: {}", temp_num, temp_value);
+
+    if temp_value == "F" {
+        println!("{} in Celcius is: {}", temp, format!("{:.1}",convert_to_celcius(_number)))
+    // } else {
+    //     println!("{} in Farenheit is: {}", temp, convert_to_farenheit)
+    }
 }
+
+fn convert_to_celcius(temp_num: f32) -> f32{
+    (temp_num - 32.0) * 0.555556 
+} 

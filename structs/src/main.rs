@@ -1,6 +1,7 @@
 // ? //////////////////////////////////////////////// 
 // ? Structs go on the outside of the main
 // ? //////////////////////////////////////////////// 
+#[derive(Debug)]
 struct User {
     username: String,
     email: String,
@@ -8,7 +9,8 @@ struct User {
     active: bool,
 }
 
-struct Colour
+struct Colour(String, String, String);
+struct Point(i32, i32, i32);
 
 fn main() {
 
@@ -25,6 +27,7 @@ fn main() {
 
     let user2 = build_user(String::from("bobandjannet@gmail.com"), String::from("JHanna88"));
     println!("user2.email: {}", user2.email);
+    println!("user2: {:#?}", user2);
     
     let user3 = User{
         username: String::from("AnimeFlames"),
@@ -32,7 +35,14 @@ fn main() {
         ..user1 // struct update syntax that uses the other properties of user1 to fill in the rest of the struct for user3
     };
 
-    println!("user3.email: {}", user3.email)
+    println!("user3.email: {}", user3.email);
+
+    let colour1 = Colour(String::from("Red"),String::from("Green"),String::from("Blue"));
+    let point1 = Point(9,4,7);
+
+    println!("Colour.1: {}", colour1.1);
+    println!("Point.0: {}", point1.0);
+
 }
 
 fn build_user(email: String, username: String) -> User {

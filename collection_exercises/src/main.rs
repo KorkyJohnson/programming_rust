@@ -1,4 +1,5 @@
 use collection_exercises::ex1::{median::get_median, mode::get_mode};
+use std::io;
 
 fn main() {
     // *************************************************************************************
@@ -27,12 +28,16 @@ fn main() {
 
     let vowel_vec = vec!["a", "e", "i", "o", "u"];
     let mut vowel_found = false;
-
-    let test_string: String = "This is another string".to_string();
     let mut pig_latin_string = String::new();
-    let words: Vec<&str> = test_string.split_whitespace().collect();
+    
+    let mut user_string = String::new();
+    println!("Enter a sentence and I will transform it into pig latin:");
+    io::stdin().read_line(&mut user_string).expect("You didn't enter anything");
 
-    for word in words {
+    // put all the words into a vector
+    let user_words: Vec<&str> = user_string.split_whitespace().collect();
+
+    for word in user_words {
         for letter in &vowel_vec {
             if &word[0..1] == *letter {
                 vowel_found = true
@@ -49,6 +54,7 @@ fn main() {
         // reset vowel flag
         vowel_found = false;
     }
-    println!("test_string: {}", test_string);
-    println!("pig_latin_string: {}", pig_latin_string);
+    // println!("test_string: {}", test_string);
+    // println!("pig_latin_string: {}", pig_latin_string);
+    println!("Your sentence in pig latin:\n {}", pig_latin_string);
 }

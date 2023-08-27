@@ -73,11 +73,9 @@ fn main() {
             match user_choice.to_ascii_lowercase() {
                 'a' => {
                     add_employee(&mut employee_database);
-                    display_menu();
                 }
                 'p' => {
                     display_employees(&mut employee_database);
-                    display_menu();
                 }
                 'd' => display_menu(),
                 'q' => {
@@ -112,21 +110,24 @@ fn add_employee(employee_database: &mut HashMap<String, String>) -> HashMap<Stri
 }
 
 fn display_employees(employee_database: &mut HashMap<String, String>) {
-    // TODO if no entries, then display 'Nothing has been entered"
-    let mut employee_vector: Vec<_> = employee_database.iter().collect();
-    employee_vector.sort();
+    if employee_database.len() > 0 {
+        let mut employee_vector: Vec<_> = employee_database.iter().collect();
+        employee_vector.sort();
 
-    // let mut sorted_entries: Vec<_> = hashmap.iter().collect();
-    // sorted_entries.sort_by_key(|entry| entry.0);
+        // let mut sorted_entries: Vec<_> = hashmap.iter().collect();
+        // sorted_entries.sort_by_key(|entry| entry.0);
 
-    // Iterate and print the sorted entries
-    // for (key, value) in sorted_entries {
+        // Iterate and print the sorted entries
+        // for (key, value) in sorted_entries {
         // println!("Key: {}, Value: {}", key, value);
-    // }
-    // Display names
-    // for (key, value) in employee_database {
-    for (key, value) in employee_vector{
-
-        println!("Employee: {}Department: {}", key, value)
+        // }
+        // Display names
+        // for (key, value) in employee_database {
+        for (key, value) in employee_vector {
+            println!("Employee: {}Department: {}", key, value)
+        }
+    } else {
+        println!("No entries have been made");
+        display_menu();
     }
 }

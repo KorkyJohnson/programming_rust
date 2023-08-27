@@ -1,5 +1,6 @@
 // use collection_exercises::ex1::{median::get_median, mode::get_mode};
 // use collection_exercises::ex2::pig_latin::to_pig_latin;
+use collection_exercises::ex3::menu::display_menu;
 use std::io;
 
 fn main() {
@@ -56,18 +57,11 @@ fn main() {
     // Step 3   - When display, then show list of users alphaBetically
     //          - If none, then display 'Noone has been added"
     // Bonus    - Allow user to subtract people from the hashmap as well
+
+    display_menu();
+
     loop {
         let mut user_input = String::new();
-
-        println!("********************************************************");
-        println!("*                                                      *");
-        println!("*          Please make a selection below               *");
-        println!("*                                                      *");
-        println!("*              (A)dd a employee                        *");
-        println!("*              (P)rint all employees                   *");
-        println!("*              (Q)uit program                          *");
-        println!("*                                                      *");
-        println!("********************************************************");
         io::stdin()
             .read_line(&mut user_input)
             .expect("You didn't enter anything");
@@ -76,11 +70,12 @@ fn main() {
             match user_choice.to_ascii_lowercase() {
                 'a' => println!("User wants to add"),
                 'p' => println!("User wants to print"),
+                'd' => display_menu(),
                 'q' => {
                     println!("Goodbye :)");
                     break;
                 }
-                _ => println!("Invalid selection"),
+                _ => println!("Please make a valid selection, press 'D' to display the menu"),
             }
         } else {
             println!("No valid input entered");

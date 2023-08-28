@@ -9,4 +9,7 @@ pub mod ex2 {
 
 pub mod ex3 {
     pub mod menu;
+        // pub fn display_menu() {}
+    pub mod print;
+    pub mod add;
 }

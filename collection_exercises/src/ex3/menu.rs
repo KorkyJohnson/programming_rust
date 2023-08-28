@@ -7,7 +7,7 @@ pub fn display_menu() {
     println!("*                                                      *");
     println!("*              (A)dd a employee                        *");
     println!("*              (P)rint all employees                   *");
-    println!("*              (D)isplay this menu                     *");
+    println!("*              Display this (M)enu                     *");
     println!("*              (Q)uit program                          *");
     println!("*                                                      *");
     println!("********************************************************");    

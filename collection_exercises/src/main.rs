@@ -1,7 +1,10 @@
+use clearscreen::{self, clear};
 use std::collections::HashMap;
 // use collection_exercises::ex1::{median::get_median, mode::get_mode};
 // use collection_exercises::ex2::pig_latin::to_pig_latin;
 use collection_exercises::ex3::menu::display_menu;
+use collection_exercises::ex3::print::print_employees;
+use collection_exercises::ex3::add::add_employee;
 use std::io;
 
 fn main() {
@@ -59,9 +62,9 @@ fn main() {
     //          - If none, then display 'Noone has been added"
     // Bonus    - Allow user to subtract people from the hashmap as well
 
-    display_menu();
-    // let employee_database: Vec<String> = Vec::new();
     let mut employee_database: HashMap<String, String> = HashMap::new();
+    clear().expect("Failed to clear the screen at main");
+    display_menu();
 
     loop {
         let mut user_input = String::new();
@@ -75,9 +78,12 @@ fn main() {
                     add_employee(&mut employee_database);
                 }
                 'p' => {
-                    display_employees(&mut employee_database);
+                    print_employees(&mut employee_database);
                 }
-                'd' => display_menu(),
+                'd' => {
+                    clear().expect("Failed to clear the screen at display menu");
+                    display_menu();
+                }
                 'q' => {
                     println!("Goodbye :)");
                     break;
@@ -90,44 +96,3 @@ fn main() {
     }
 }
 
-fn add_employee(employee_database: &mut HashMap<String, String>) -> HashMap<String, String> {
-    let mut emp_name = String::new();
-    let mut emp_dept = String::new();
-
-    println!("Please enter employee name:");
-    io::stdin()
-        .read_line(&mut emp_name)
-        .expect("You didn't enter an employee name");
-
-    println!("Please enter employee department");
-    io::stdin()
-        .read_line(&mut emp_dept)
-        .expect("You didn't enter an employee department");
-
-    employee_database.insert(emp_name, emp_dept);
-    println!("Employee added");
-    employee_database.clone()
-}
-
-fn display_employees(employee_database: &mut HashMap<String, String>) {
-    if employee_database.len() > 0 {
-        let mut employee_vector: Vec<_> = employee_database.iter().collect();
-        employee_vector.sort();
-
-        // let mut sorted_entries: Vec<_> = hashmap.iter().collect();
-        // sorted_entries.sort_by_key(|entry| entry.0);
-
-        // Iterate and print the sorted entries
-        // for (key, value) in sorted_entries {
-        // println!("Key: {}, Value: {}", key, value);
-        // }
-        // Display names
-        // for (key, value) in employee_database {
-        for (key, value) in employee_vector {
-            println!("Employee: {}Department: {}", key, value)
-        }
-    } else {
-        println!("No entries have been made");
-        display_menu();
-    }
-}
